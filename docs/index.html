@@ -104,10 +104,8 @@
     return `${(b / 1024 / 1024).toFixed(1)} MB`;
   };
   const TZ_LIST = [
-    { tz: "Asia/Tokyo", label: "JST" },
     { tz: "UTC", label: "UTC" },
-    { tz: "America/New_York", label: "ET" },
-    { tz: "America/Los_Angeles", label: "PT" },
+    { tz: "Asia/Tokyo", label: "JST" },
   ];
   const fmtInTZ = (d, tz) => {
     const parts = new Intl.DateTimeFormat("en-CA", {
