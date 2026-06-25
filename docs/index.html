@@ -30,24 +30,23 @@
   .meta-row { display: flex; gap: 24px; justify-content: center; margin-top: 18px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
   .meta-row b { color: var(--text); font-weight: 600; }
   .totals { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 28px; }
-  tr.all-data-row td { background: rgba(96, 165, 250, 0.08); border-bottom: 1px solid rgba(96, 165, 250, 0.25); }
+  tr.all-data-row td { background: rgba(96, 165, 250, 0.08); }
   tr.all-data-row:hover td { background: rgba(96, 165, 250, 0.14); }
   tr.all-data-row td.pname { color: var(--accent); }
   .totals .stat { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 14px; text-align: center; }
   .totals .stat .n { font-size: 22px; font-weight: 700; color: var(--accent); }
   .totals .stat .l { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
-  table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-  th, td { padding: 12px 14px; text-align: right; font-size: 13px; border-bottom: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; background: var(--panel); border-radius: 8px; overflow: hidden; }
+  th, td { padding: 12px 14px; text-align: center; font-size: 13px; border: none; vertical-align: middle; }
   th { background: rgba(0,0,0,0.25); color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
-  th:first-child, td:first-child { text-align: left; }
-  tr:last-child td { border-bottom: none; }
   tr:hover td { background: var(--panel-hi); }
   .pname { font-weight: 600; color: var(--text); }
-  .dl { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; margin: 0 2px; background: rgba(96, 165, 250, 0.12); border: 1px solid rgba(96, 165, 250, 0.3); border-radius: 4px; color: var(--accent); text-decoration: none; font-size: 11px; font-weight: 600; transition: all 0.15s ease; white-space: nowrap; }
+  .dl { display: flex; align-items: center; justify-content: center; gap: 4px; padding: 6px 10px; background: rgba(96, 165, 250, 0.12); border: 1px solid rgba(96, 165, 250, 0.3); border-radius: 4px; color: var(--accent); text-decoration: none; font-size: 11px; font-weight: 600; transition: all 0.15s ease; white-space: nowrap; }
   .dl:hover { background: rgba(96, 165, 250, 0.25); border-color: var(--accent); color: var(--accent-hi); }
   .dl .sz { font-weight: 400; color: var(--muted); font-size: 10px; }
   .dl:hover .sz { color: var(--accent-hi); }
-  .dl-cell { text-align: center; min-width: 130px; }
+  .dl-cell { min-width: 280px; }
+  .dl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
   footer { text-align: center; color: var(--muted); font-size: 12px; margin-top: 28px; }
   footer a { color: var(--accent); text-decoration: none; }
   .err { background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); padding: 16px; border-radius: 8px; color: #fca5a5; margin: 20px 0; }
@@ -138,7 +137,7 @@
         <td>${fmtNum(counts.figures ?? 0)}</td>
         <td>${fmtNum(counts.samples ?? 0)}</td>
         <td>${fmtNum(counts.curves ?? 0)}</td>
-        <td class="dl-cell">${allDlButton("papers", manifest)}${allDlButton("samples", manifest)}${allDlButton("curves", manifest)}</td>
+        <td class="dl-cell"><div class="dl-grid">${allDlButton("papers", manifest)}${allDlButton("samples", manifest)}${allDlButton("curves", manifest)}</div></td>
       </tr>
     `;
   }
@@ -169,7 +168,7 @@
         <td>${fmtNum(c.figures ?? 0)}</td>
         <td>${fmtNum(c.samples ?? 0)}</td>
         <td>${fmtNum(c.curves ?? 0)}</td>
-        <td class="dl-cell">${dlButton(name, "papers", manifest)}${dlButton(name, "samples", manifest)}${dlButton(name, "curves", manifest)}</td>
+        <td class="dl-cell"><div class="dl-grid">${dlButton(name, "papers", manifest)}${dlButton(name, "samples", manifest)}${dlButton(name, "curves", manifest)}</div></td>
       </tr>
     `).join("");
 
@@ -177,7 +176,7 @@
       <table>
         <thead>
           <tr>
-            <th>Project</th><th>Papers</th><th>Figures</th><th>Samples</th><th>Curves</th><th style="text-align:center">Download</th>
+            <th>Project</th><th>Papers</th><th>Figures</th><th>Samples</th><th>Curves</th><th>Download</th>
           </tr>
         </thead>
         <tbody>${allDataRow(counts, manifest)}${rows}</tbody>
