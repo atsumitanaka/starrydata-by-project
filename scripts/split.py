@@ -120,6 +120,11 @@ def split(zip_path: Path, out_dir: Path) -> dict:
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "db_snapshot": snapshot,
         "source_zip": zip_path.name,
+        "all_data": {
+            "filename": zip_path.name,
+            "bytes": zip_path.stat().st_size,
+            "sha256": sha256(zip_path),
+        },
         "projects": manifest,
     }
     (out_dir / "manifest.json").write_text(json.dumps(payload, indent=2, ensure_ascii=False))
